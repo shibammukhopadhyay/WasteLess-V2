@@ -1,8 +1,9 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
-import { Clock, MapPin, Users } from "lucide-react";
+import { Badge } from "./ui/badge";
+import { Clock, MapPin, Users, CreditCard } from "lucide-react";
 import { FoodItem } from "./FoodCard";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 interface PurchaseModalProps {
     item: FoodItem | null;
@@ -22,76 +23,80 @@ export function PurchaseModal({ item, isOpen, onClose, onConfirmPurchase }: Purc
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="max-w-md">
-                <DialogHeader>
-                    <DialogTitle>Confirm Your Purchase</DialogTitle>
+            <DialogContent className="max-w-lg p-0 bg-white text-gray-900 border-gray-200">
+                <DialogHeader className="px-6 pt-6 pb-2">
+                    <DialogTitle className="text-2xl font-bold text-center text-gray-900">Reserve Your Food</DialogTitle>
                 </DialogHeader>
                 
-                <Card className="border-0 shadow-none">
-                    <CardContent className="p-0">
-                        <div className="space-y-4">
-                            <div>
-                                <h3 className="font-medium text-lg">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.businessName}</p>
-                            </div>
-
-                            <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                                <div className="flex items-center space-x-1">
-                                    <Clock className="w-4 h-4" />
-                                    <span>{item.pickupTime}</span>
+                <div className="px-6 pb-6">
+                    {/* Food Image with Discount Badge */}
+                    <div className="relative mb-4">
+                        <ImageWithFallback
+                            src={item.imageUrl}
+                            alt={item.title}
+                            className="w-full h-48 object-cover rounded-lg"
+                        />
+                        <Badge className="absolute top-3 right-3 bg-green-600 text-white text-sm px-2 py-1">
+                            -{discount}%
+                        </Badge>
                                 </div>
-                                <div className="flex items-center space-x-1">
-                                    <MapPin className="w-4 h-4" />
-                                    <span>{item.location}</span>
-                                </div>
-                            </div>
 
-                            <div className="flex items-center space-x-1 text-sm">
-                                <Users className="w-4 h-4 text-muted-foreground" />
-                                <span className="text-muted-foreground">{item.quantity} portions left</span>
-                            </div>
+                    {/* Food Details */}
+                    <div className="mb-4">
+                        <h3 className="font-semibold text-xl mb-1 text-gray-900">{item.title}</h3>
+                        <p className="text-gray-600">{item.businessName}</p>
+                        <p className="text-sm text-gray-600 mt-2">{item.description}</p>
+                    </div>
 
-                            <div className="bg-gray-50 p-4 rounded-lg">
-                                <div className="flex justify-between items-center mb-2">
-                                    <span className="text-sm text-muted-foreground">Original Price:</span>
-                                    <span className="line-through text-muted-foreground">£{item.originalPrice.toFixed(2)}</span>
-                                </div>
-                                <div className="flex justify-between items-center mb-2">
-                                    <span className="text-sm text-muted-foreground">Discount ({discount}%):</span>
-                                    <span className="text-green-600">-£{(item.originalPrice - item.discountedPrice).toFixed(2)}</span>
-                                </div>
-                                <div className="flex justify-between items-center text-lg font-medium border-t pt-2">
-                                    <span>Total:</span>
-                                    <span className="text-green-600">£{item.discountedPrice.toFixed(2)}</span>
-                                </div>
-                            </div>
-
-                            <div className="bg-blue-50 p-3 rounded-lg">
-                                <p className="text-sm text-blue-800">
-                                    <strong>Pickup Instructions:</strong><br />
-                                    Please arrive at {item.location} between {item.pickupTime}. 
-                                    Bring a valid ID and show your confirmation email.
-                                </p>
-                            </div>
-
-                            <div className="flex space-x-3">
-                                <Button 
-                                    onClick={handleConfirm}
-                                    className="flex-1 bg-green-600 hover:bg-green-700"
-                                >
-                                    Confirm Purchase
-                                </Button>
-                                <Button 
-                                    variant="outline" 
-                                    onClick={onClose}
-                                    className="flex-1"
-                                >
-                                    Cancel
-                                </Button>
-                            </div>
+                    {/* Pickup Information */}
+                    <div className="space-y-2 mb-4 text-sm">
+                        <div className="flex items-center space-x-2">
+                            <Clock className="w-4 h-4 text-gray-600" />
+                            <span className="text-gray-600"><strong>Pickup:</strong> {item.pickupTime}</span>
                         </div>
-                    </CardContent>
-                </Card>
+                        <div className="flex items-center space-x-2">
+                            <MapPin className="w-4 h-4 text-gray-600" />
+                            <span className="text-gray-600">{item.location}</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <Users className="w-4 h-4 text-gray-600" />
+                            <span className="text-gray-600">{item.quantity} portions available</span>
+                        </div>
+                    </div>
+
+                    {/* Pricing */}
+                    <div className="flex justify-between items-center mb-6">
+                        <span className="text-lg font-medium text-gray-900">Total:</span>
+                        <div className="flex items-center space-x-2">
+                            <span className="line-through text-gray-500">£{item.originalPrice.toFixed(2)}</span>
+                            <span className="text-xl font-bold text-green-600">£{item.discountedPrice.toFixed(2)}</span>
+                        </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex space-x-3 mb-4">
+                        <Button 
+                            variant="outline" 
+                            onClick={onClose}
+                            className="flex-1"
+                        >
+                            Cancel
+                        </Button>
+                        <Button 
+                            onClick={handleConfirm}
+                            className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+                        >
+                            <CreditCard className="w-4 h-4 mr-2" />
+                            Pay & Reserve
+                        </Button>
+                    </div>
+
+                    {/* Confirmation Message */}
+                    <p className="text-xs text-gray-600 text-center">
+                        After payment, you'll receive pickup instructions and a confirmation code. 
+                        Show this code when collecting your food.
+                    </p>
+                                </div>
             </DialogContent>
         </Dialog>
     );
