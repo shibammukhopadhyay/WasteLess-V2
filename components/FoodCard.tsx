@@ -27,7 +27,7 @@ export function FoodCard({ item, onPurchase }: FoodCardProps) {
     const discount = Math.round((1 - item.discountedPrice / item.originalPrice) * 100);
 
     return (
-        <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+        <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer min-w-0">
             <div className="relative">
                 <ImageWithFallback
                     src={item.imageUrl}
