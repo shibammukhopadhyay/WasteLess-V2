@@ -51,16 +51,16 @@ const initialFoodItems: FoodItem[] = [
   },
   {
     id: '4',
-    title: 'Asian Fusion Bowl Mix',
-    businessName: 'Dragon Bowl',
-    originalPrice: 11.00,
+    title: 'Combination Fried Rice',
+    businessName: 'Chuong Garden',
+    originalPrice: 14.00,
     discountedPrice: 4.50,
     category: 'asian',
-    imageUrl: 'https://images.unsplash.com/photo-1741612552052-2c5806e8a9ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc2lhbiUyMHJlc3RhdXJhbnQlMjBmb29kJTIwYm93bHN8ZW58MXx8fHwxNzU4OTg5MjU1fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    imageUrl: 'https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/ohxnbldw/3a958f83-376b-482f-b47d-51132388846d.jpg',
     pickupTime: '8:00 PM - 9:00 PM',
-    location: 'International Food Court',
+    location: '915 Broad St.',
     quantity: 6,
-    description: 'A surprise mix of our popular Asian fusion bowls with rice, noodles, and fresh ingredients.'
+    description: 'A hearty, savory fried rice dish combining tender pieces of chicken, beef, shrimp sautéed with a colorful medley of diced vegetables (like peas, carrots, onions) and fluffy wok-fried rice.'
   }
 ];
 
@@ -153,7 +153,7 @@ export default function App() {
             </p>
             <div className="flex items-center justify-center space-x-1 text-sm text-muted-foreground">
               <MapPin className="w-4 h-4" />
-              <span>University Town • Available 6-10 PM daily</span>
+              <span>Grinnell, IA • Available 6-10 PM daily</span>
             </div>
           </div>
         )}
