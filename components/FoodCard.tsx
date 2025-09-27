@@ -58,8 +58,8 @@ export function FoodCard({ item, onPurchase }: FoodCardProps) {
                 </div>
 
                 <div className="flex items-center space-x-2 mb-3">
-                    <span className="line-through text-muted-foreground">£{item.originalPrice.toFixed(2)}</span>
-                    <span className="text-green-600">£{item.discountedPrice.toFixed(2)}</span>
+                    <span className="line-through text-muted-foreground">${item.originalPrice.toFixed(2)}</span>
+                    <span className="text-green-600">${item.discountedPrice.toFixed(2)}</span>
                 </div>
 
                 <div className="flex items-center space-x-1 text-sm text-muted-foreground">

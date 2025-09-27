@@ -108,7 +108,7 @@ export function BusinessDashboard({ onAddItem, businessItems, onUpdateItem, onDe
                                     </Select>
                                 </div>
                                 <div>
-                                    <Label htmlFor="originalPrice">Original Price (£)</Label>
+                                    <Label htmlFor="originalPrice">Original Price ($)</Label>
                                     <Input
                                         id="originalPrice"
                                         type="number"
@@ -119,7 +119,7 @@ export function BusinessDashboard({ onAddItem, businessItems, onUpdateItem, onDe
                                     />
                                 </div>
                                 <div>
-                                    <Label htmlFor="discountedPrice">Discounted Price (£)</Label>
+                                    <Label htmlFor="discountedPrice">Discounted Price ($)</Label>
                                     <Input
                                         id="discountedPrice"
                                         type="number"
@@ -195,7 +195,7 @@ export function BusinessDashboard({ onAddItem, businessItems, onUpdateItem, onDe
                                         <h4>{item.title}</h4>
                                         <p className="text-sm text-muted-foreground mb-2">{item.description}</p>
                                         <div className="flex items-center space-x-4 text-sm">
-                                            <span>£{item.originalPrice.toFixed(2)} → £{item.discountedPrice.toFixed(2)}</span>
+                                            <span>${item.originalPrice.toFixed(2)} → ${item.discountedPrice.toFixed(2)}</span>
                                             <span>{item.quantity} portions</span>
                                             <span>{item.pickupTime}</span>
                                         </div>

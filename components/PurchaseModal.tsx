@@ -68,8 +68,8 @@ export function PurchaseModal({ item, isOpen, onClose, onConfirmPurchase }: Purc
                     <div className="flex justify-between items-center mb-6">
                         <span className="text-lg font-medium text-gray-900">Total:</span>
                         <div className="flex items-center space-x-2">
-                            <span className="line-through text-gray-500">£{item.originalPrice.toFixed(2)}</span>
-                            <span className="text-xl font-bold text-green-600">£{item.discountedPrice.toFixed(2)}</span>
+                            <span className="line-through text-gray-500">${item.originalPrice.toFixed(2)}</span>
+                            <span className="text-xl font-bold text-green-600">${item.discountedPrice.toFixed(2)}</span>
                         </div>
                     </div>
 
